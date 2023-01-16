@@ -74,3 +74,33 @@ a=a+1
 a
 a+=1
 #-=等
+#时间的表示，1970.1.1.00.00.00 unix时间点
+import time
+time.time()
+b = int(time.time())
+b
+totalMINUTES = b/60
+totalMINUTES = b//60
+totalHOURS = totalMINUTES//60
+totalDAYS = totalHOURS//60
+totalMINUTES
+totalHOURS
+totalDAYS
+#定义多个点的坐标
+x1,y1 = 100,100
+x2,y2 = 100,-100
+x3,y3 = -100,-100
+x4,y4 = -100,100
+
+#绘制折线
+#计算起始点和终点的距离
+import math
+distance = math.sqrt((x1-x4)**2 + (y1-y4)**2)
+print(distance)
+True
+False
+#比较运算符== != < > >= <= 逻辑运算符 与 或 非
+a = True
+b = False
+a or 30
+b or 30
