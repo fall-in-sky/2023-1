@@ -1,0 +1,142 @@
+#is比较对象地址，==比较对象的值 
+a = 1000
+b = 1000
+a == b
+a is b
+id(a)
+id(b)
+#-5——256会直接缓存起来，用同一对象,字符串（字符序列），逻辑》数学能力
+a = 18
+b = 18
+a is b
+ord('A')
+chr(66)
+a = "I'm a teacher!"
+print(a)
+b = 'my name is "t"'
+print(b)
+#连续三个单引号或双引号，可以帮助我们创建多行字符串。
+resume = '''name="ly"
+company="sxt" age=18
+lover="zl"'''
+print(resume)
+#空字符串，和len()函数
+c=''
+c
+len(c)
+len(a)
+len(b)
+#转义字符
+a='i\nlove\nu'
+a
+print(a)
+b='i\'m a teacher'
+b
+print(b)
+print('aaaa\
+cccddd')
+"aa"+"bb"
+3+4
+"aa""bb"
+a="Sxt"*3
+a
+print("aa",end="\n")
+print("bb")
+myname = input("请输入名字: ")
+str(5.20)
+str(3.14e2)
+-len(str)
+str(True)
+a="abcd"
+a
+a[0]
+a[3]
+a[4-1]
+a[4]
+a[-1]
+a[-2]
+a[-4]
+a[-5]
+a.replace("c","s")
+a
+a = a.replace("c","s")
+a
+a="abcdefghijklmn"
+a[2]
+a[1:5]#包头不包尾
+a[1:5:2]#[start:end:step]
+a[:]
+a[2:]
+a[:3]
+a[-8:-3]
+a[::-1]
+a[2:40]    #没有报错？？？？
+"to be or not to be"[::-1]
+a="to be or not to be"
+a.split()
+a.split('to')
+a=['sxt','sxt100','sxt200']
+'*'.join(a)
+''.join(a)
+import time
+
+time01 = time.time()    #起始
+a=''
+for i in rang(1000000);
+    a += 'sxt'
+    
+time02 = time.time()    #终止
+print("运算时间："+str(time02-time01))
+
+time03 = time.time()
+li = []
+for i in range(1000000):
+    li.append("sxt")
+    
+a=''.join(li)
+
+time04 = time.time()
+print("运算时间："+str(time04-time03))
+#测试+拼接符和join效率的差距(PS：新版python3.11完全没有差距好吧！）
+#字符串驻留机制和字符串比较
+a = "abd_33"
+b = "abd_33"
+a is b
+
+c = "dd#"
+d = "dd#"
+c is d
+c == d
+#字符串比较和统一性
+a = "abcdefg"
+a.startswith("ab")
+a.startswith("ac")
+a.find("ab")
+a.find("d")
+a.count("f")
+a.isalnum()
+
+"sxt".strip()
+" s x t ".strip()    #去除首位指定信息（lstrip左)等一些排版方法
+#字符串格式化，可变字符串
+a = "名字是：{0}，年龄是：{1}"
+a.format("t",18)
+a.format("p",8)
+#填充与对齐
+"{:*>8}".format("245")
+"我是{0},我喜欢数字{1:*^8}".format("g","666")
+
+"我是{0},我喜欢数字{1:^8}".format("g","666")
+"我是{0},我喜欢数字{1:*>8}".format("g","666")
+"我是{0},我喜欢数字{1:*>20}".format("g","666")
+
+a ="我是{0},我的存款{1:.2f}"    #格式,数字不要加双引号！！！！！
+a.format("g",1000000888.5551)
+s = "hello"
+import io
+sio = io.StringIO(s)
+sio
+sio.getvalue()
+sio.seek(3)
+sio.write('g')
+sio.getvalue()
