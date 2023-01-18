@@ -1,0 +1,184 @@
+#基本运算符and, or, not, is , is not, <, <=, >, >=, !=, ==
+a=4
+3<a<10
+a=0b11001
+b=0b01000
+a
+b
+c=a|b
+c
+bin(c)
+bin(a&b)
+bin(a^b)
+a = 3
+a<<2    #左移1位相当于乘以2，左移2位，相当于乘以4
+a<<3    #Python不支持自增和自减
+#使用python表示数学式
+(5+10*x)/5-13*(y-1)*(a+b)/x+9*(5/x+(12+x)/y)
+a = [10,20,30,40]
+id(a)
+type(a)
+value(a)
+a = [10,20,'abc',True]
+#list.append(x)
+a=[10,20,30,'dd']
+a[0]
+a[3]
+a=[]
+a.append(20)
+a
+a=list()
+a
+a=list(range(10))
+a
+a=list('abcde')
+a = range(10)
+type(a)
+list(a)
+list(range(10))
+range([start,]end[,step])
+list(range(0,10,1))
+list(range(3,20,2))
+list(range(20,12,-1))
+list(range(0,-10,-1))
+a = [x*2 for x in range(5)]
+a
+a = [x*2 for x in range(100) if x%9==0]    #通过if过滤元素
+a
+a.append(80)
+a
+id(a)
+a = a+[50]
+a
+id(a)
+a.extend([60,70])
+a
+id(a)
+a.insert(2,100)
+a
+a = "s"*3
+a=[10,20]
+a
+a*3
+del a[1]
+a = [x*2 for x in range(5)]
+b=a.pop()
+b
+a
+c=a.pop(1)
+c
+a
+a.insert(1,4)
+a
+a.remove(4)    #也可以对字符串进行操作
+a
+a[2]
+a.index(4)    #index(value,[start,[end]])
+a.index(4,2)    #从索引位置2开始往后搜索第一个4
+a.index(4,0,2)
+a.count(0)
+len(a)
+a = [10,20,30,40]
+20 in a
+"ab" in "abc"
+10 in [10,11]
+
+a = [10,20,30,40,50,60,70]
+a[:]
+a[1:3:1]
+a[1::2]
+a[1:]
+a[:2]
+[10,20,30,40,50,60,70][-5:-3]
+for x in a:
+    print(x)
+#a.sort()    #默认是升序排列
+a
+id(a)
+a.sort(reverse=True)
+a
+import random
+random.shuffle(a)    #打乱顺序
+id(a)
+a
+#内置函数sorted()
+a = sorted(a)
+a
+id(a)
+a = [20,10,30,40]
+a[::-1]
+c = reversed(a)
+c
+list(c)
+list(c)
+max(a)
+min(a)
+sum(a)
+
+
+a = [10,20,30,40,50,60,70]
+a[:]
+a[1:3:1]
+a[1::2]
+a[1:]
+a[:2]
+[10,20,30,40,50,60,70][-5:-3]
+for x in a:
+    print(x)
+a.sort()    #默认是升序排列
+a
+id(a)
+a.sort(reverse=True)
+a
+import random
+random.shuffle(a)    #打乱顺序
+id(a)
+a
+#内置函数sorted()
+a = sorted(a)
+a
+id(a)
+a = [20,10,30,40]
+a[::-1]
+c = reversed(a)
+c
+list(c)
+list(c)
+max(a)
+min(a)
+sum(a)
+
+a = [
+     ['a',18,3000,'bj'],
+     ['b',22,11000,'sh'],
+     ['c',25,10000,'sz'],
+    ]
+a[0]
+a[0][3]
+
+for m in range(3):
+    for n in range(4):
+        print(a[m][n],end+"\t")
+    print()    #打印完一行，换行
+
+a = (10,20,30)
+type(a)
+a= 10,20,30
+type(a)
+b=(20)
+type(b)
+b=(20,)
+type(b)
+b=20,
+type(b)
+c = tuple()
+c
+b = tuple('abcd')
+b
+b = list("abcd")
+b
+b = tuple(range(3))
+b
+b = tuple([30,40,50])
+b
+del b
