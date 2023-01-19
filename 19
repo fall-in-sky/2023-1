@@ -1,0 +1,123 @@
+a = (20,30,40)
+a[0]
+a[1]
+#a[1]=300   #不能直接改
+a = tuple('abcdefghijklmn')
+a
+a[1:10]
+a[::-1]
+b= (30,20,40)
+sorted(b)
+a= 1,20
+b= 30,20
+a+b
+a
+len(a)
+sum(a)
+max(a)
+a =[10,20,30]
+b =[40,50,60]
+c =[70,80,90]
+d = zip(a,b,c)
+d
+list(d)
+
+#生成器推导式
+s = (x*2 for x in range(5))
+s
+tuple(s)
+list(s)
+s = (x*2 for x in range(5))
+s.  next  ()
+s.  next  ()
+s.  next  ()
+s.  next  ()
+s.  next  ()
+s.  next  ()
+
+a={'name':"g",'age':18,'dd':[2,3,4]}
+a
+b = dict(name='g',age=18)
+b
+b = [('name','g'),('age',18)]
+b
+c = {}
+d = dict()
+k = ["a","b","c"]
+v = [100,200,300]
+d = dict(zip(v,k))    #前面是键对象，后面是值对象
+d
+a = dict.fromkeys(['a','b',])
+a
+
+a={'name':"g",'age':18,'job':'programmer'}
+a['name']
+a.get('name')
+a.get('dd')
+a
+print(a.get("dd"))
+a.get('dd','不存在')
+a.items()
+a.keys()
+a.values()
+len(a)
+'name' in a
+
+a={'name':"g",'age':18,'job':'programmer'}
+a['address']='hell'
+a
+a['age'] = 19
+a
+b={'name':'a','money':2000,'sex':'男'}
+a.update(b)
+a
+del(a['age'])
+b= a.pop('name')
+b
+a.clear()
+a
+a={'name':"g",'age':18,'job':'programmer'}
+a.popitem()
+a
+a.popitem()
+a
+
+x,y,z = 20,30,10
+x
+x,y,z = (20,30,10)
+(a,b,c) = (20,30,10)
+a
+b
+s = {'name':'g','age':18,'job':'teacher'}
+a,b,c=s    #接受键_解包
+a
+b
+c
+e,d,f = s.values()
+e
+d
+f
+h,i,j = s.items()
+h[0]
+h[1]
+
+r1={'name':"g",'age':18,'salary':3000,'city':'bj'}
+r2={'name':"h",'age':19,'salary':10000,'city':'sz'}
+r3={'name':"i",'age':20,'salary':11000,'city':'sh'}
+#列表
+tb = [r1,r2,r3]
+print(tb[1].get('salary'))
+for i in range(len(tb)):    # i ___>0,1,2
+    print(tb[i].get('salary'))
+for i in range(len(tb)):    # i ___>0,1,2
+    print(tb[i].get('name'),tb[i].get('salary'))
+
+bin(hash('name'))
+
+a = {233,30,2,'gg'}
+a.add(30)
+a
+b = set(a)
+b
+a|b    #并集
+a&b    #交集
