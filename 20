@@ -1,1 +1,214 @@
 #pycharm
+a = input('请输入一个小于10的数字：')
+'''
+3个引号表示注释，之前可能有误。
+if int(a)<10:
+    print(a)
+#条件表达式
+c = 'false'
+if c:
+    print('c')
+b = []
+if not b:
+    print('空的列表是false')
+
+d=100
+if d:
+    print("d")
+
+if 3<d<100:
+    print("3<d<100")
+'''
+'''
+#if 3<c and (c=20):条件表达式不能使用“赋值操作符”
+if int(a)<10:
+    print("a是小于10的数字")
+else:
+    print("a是大于等于10的数字")
+'''
+#三元运算符，条件为真的值if（条件表达式）else条件为假的值
+print("a是小于10的数字"if int(a)<10 else "a是大于等于10的数字")
+
+#测试多分支选择结构
+score = int(input("请输入分数"))
+grade = ""
+if(score<60):
+    grade = "D"
+if(60<=score<80):
+    grade = "C"
+if(80<=score<90):
+    grade = "B"
+if(90<=score<=100):
+    grade = "A"
+
+print("分数是{0},等级是{1}".format(score,grade))
+
+score = int(input("请输入分数"))
+grade = ""
+if(score<60):
+    grade = "D"
+elif score<80:
+    grade = "C"
+elif score < 90:
+    grade = "B"
+else:
+    grade = "A"
+
+print("分数是{0},等级是{1}".format(score,grade))
+
+score = int(input("请输入分数"))
+grade = ""
+if score>100 or score<0:    #测试选择结构的嵌套
+    print("请输入一个0-100的分数")
+else:
+    if(score<60):
+        grade = "D"
+    elif score<80:
+        grade = "C"
+    elif score < 90:
+        grade = "B"
+    else:
+        grade = "A"
+    print("分数是{0},等级是{1}".format(score,grade))
+
+#测试多分支选择结构（思考）
+score = int(input("请输入一个分数"))
+degree = "ABCDE"
+num = 0
+if score>100 or score<0:
+    print("请输入一个0-100的分数")
+else:
+    num = score//10
+    if num<6:
+        num=5
+    print(degree[9-num])
+
+
+num=0
+while num<=10:
+    print(num,end="\t")
+    num += 1
+
+#计算1-100之间的数字累加和
+num2=0
+sum_all = 0
+while num2<=100:
+    sum_all = sum_all +num2
+    num2 +=1
+print("1-100所有数的累加和：",sum_all)
+
+for x in (20,30,40):
+    print(x*3)
+
+for y in "abcdef":
+    print(y)
+
+d ={"name":"g","age":18,"job":"teacher"}
+for x in d:
+    print(x)
+for x in d.keys():
+    print(x)
+for x in d.values():
+    print(x)
+for x in d.items():
+    print(x)
+
+sum_all=0
+sum_odd=0    #100以内奇数和
+sum_even = 0
+for x in range(101):
+    sum_all += x
+    if x%2==1:
+        sum_odd += x
+    else:
+        sum_even += x
+print("1-100累加总和{0},奇数和{1},偶数和{2}".format(sum_all,sum_odd,sum_even))
+
+#嵌套循环+两个练习
+for x in range(5):
+    for y in range(5):
+        print(x,end="\t")
+    print("\n")
+
+for m in range(1,10):
+    for n in range(1,m+1):
+        print("{0}*{1}={2}".format(m,n,(m*n)),end="\t")
+    print()    #换行
+
+#使用列表和字典存储表格的数据
+tb=[]
+r1= dict(name='a',age=18,salary=3000,city='bj')
+r2= dict(name='b',age=19,salary=10000,city='sh')
+r3= dict(name='c',age=20,salary=11000,city='hz')
+tb = [r1,r2,r3]
+for x in tb:
+    if x.get('salary')>=10000:
+        print(x)
+        
+#break语句
+while True:
+    a =input("请输入一个字符（输入Q或q结束）")
+    if a.upper()=="Q"or a=="q":
+        print("循环结束，退出")
+        break
+    else:
+        print(a)
+
+#continue语句，结束本次循坏，继续下一次
+empNUM =0
+salarySUM =0
+salarys = []
+while True:
+    s=input("请输入一个字符（输入Q或q结束）")
+    if s.upper()=="Q"or a=="q":
+        print("录入结束，退出")
+        break
+    if float(s)<0:
+        continue
+    empNUM +=1
+    salarys.append(float(s))
+    salarySUM += float(s)
+print("员工数{0}".format(empNUM))
+print("录入薪资：",salarys)
+print("平均薪资{0}".format(salarySUM/empNUM))
+
+#else语句 没被break中断执行else
+salarySUM =0
+salarys = []
+for i in range(4):
+    s=input("请输入4名员工的工资（输入Q或q结束）")
+    if s.upper()=="Q"or a=="q":
+        print("录入结束，退出")
+        break
+    if float(s)<0:
+        continue
+
+    salarys.append(float(s))
+    salarySUM += float(s)
+else:
+    print("您已全部录入完成")
+
+print("录入薪资：",salarys)
+print("平均薪资{0}".format(salarySUM/4))
+
+
+#循环代码优化1减少不必要的计算，嵌套循环中，尽量减少内层循环计算，尽可能外提，3局部变量查询快，多用
+import time
+start = time.time()
+for i in range(1000):
+    result = []
+    for m in range(10000):
+        result.append(i*1000+m*100)
+end = time.time()
+print("耗时:{0}".format((end-start)))
+
+start2 = time.time()
+for i in range(1000):
+    result = []
+    c = i*1000
+    for m in range(10000):
+        result.append(c+m*100)
+end2 = time.time()
+print("耗时:{0}".format((end2-start2)))
+
+#1尽量使用join而不是+，尽量在列表尾部操作
