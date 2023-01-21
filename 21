@@ -63,3 +63,69 @@ for i in range(5):    #0    1    2    3    4
 
 turtle.done()    #程序执行完，窗口仍然在
 #作业：画一个18*18的棋盘(我的思路，18条横线，18条竖线。）重复
+
+#函数function功能 内置/标准库/第三方/用户自定义（函数定义调用格式）
+def s1():
+    print("8"*10)
+    '''一切皆是对象'''
+
+s1()
+for i in range(10):
+    s1()
+
+print(id(s1()))
+print(type(s1()))
+print(s1())
+
+#形参和实参
+def printMAX(a,b):
+    "两个数比较取最大"
+
+    if a>b:
+        print(a,'max')
+    else:
+        print(b,'max')
+
+printMAX(10,20)
+printMAX(200,100)
+
+c = '''
+ssss
+dddd
+'''
+print(c)
+
+help(printMAX.__doc__)
+
+#返回值
+def add(a,b):
+    print("add a+b:{0},{1},{2}".format(a,b,(a+b)))
+    return a+b
+
+def test02():
+    print('fuction')
+    print('love')
+    return     #return两个作用：1返回值，2结束函数的执行
+
+    print('hello')
+
+def test03(x,y,z):
+    return [x*10,y*10,z*10]
+
+c = add(30,40)
+print(add(30,40)*10)
+d=test02()
+print(d)
+
+print(test03(4,3,2))
+
+#测试函数也是对象
+def print_star():
+    print('**n')
+
+print_star()
+c = print_star()
+
+print(id(print_star()))
+print(id(c))
+print(type(c))
