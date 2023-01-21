@@ -1,0 +1,11 @@
+#测试zip（）并行迭代
+for i in [1,2,3]:
+    print(i)
+names =('g''h''i''j')
+ages = (18,19,20,21)
+jobs = ('teacher','programmer','politician','doctor')
+for name,age,job in zip(names,ages,jobs):
+    print('{0}-{1}-{2}'.format(name,age,job))
+
+for i in range(4):
+    print("{0}-{1}-{2}".format(names[i],ages[i],jobs[i]))
