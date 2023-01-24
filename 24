@@ -1,0 +1,165 @@
+#测试参数的传递，传递可变对象
+
+a=[10,20]
+
+print(id(a))
+print(a)
+print('-------')
+def test01(m):
+    print(id(m))
+    m.append(300)
+    print(id(m))
+
+test01(a)
+print(a)
+
+#测试浅拷贝、深拷贝
+
+import copy
+def testCopy():
+    '''测试浅拷贝'''
+    a = [10,20,[5,6]]
+    b = copy.copy(a)
+
+    print('a:',a)
+    print('b:',b)
+
+    b.append(30)
+    b[2].append(7)
+    print('浅拷贝……')
+    print('a:',a)
+    print('b:',b)
+
+testCopy()
+
+def testDeepCopy():
+    '''测试深拷贝'''
+
+    a = [10,20,[5,6]]
+    b = copy.deepcopy(a)
+
+    print('a:',a)
+    print('b:',b)
+
+    b.append(30)
+    b[2].append(7)
+    print('深拷贝……')
+    print('a:',a)
+    print('b:',b)
+
+testDeepCopy()
+
+#传递不可变对象时，不可变对象里面包含的子对象是可变的，则方法内修改了这个可变对象，源对象也发生了改变
+a = 10
+print('a:',id(a))
+
+def test01(m):
+    print('m:',id(m))
+    m=20
+    print(m)
+    print('m:',id(m))
+
+test01(a)
+
+a = (10,20,[5,6])
+print('a:',id(a))
+
+def test01(m):
+    print('m:',id(m))
+    m[2][0]=888
+    print(m)
+    print('m:',id(m))
+
+test01(a)
+print(a)
+#位置参数
+def f1(a,b,c):
+    print(a,b,c)
+
+f1(2,3,4)
+#默认值参数
+def f1(a,b,c=10,d=20):
+    print(a,b,c,d)
+
+f1(8,9)
+f1(8,9,19)
+f1(8,9,19,29)
+#命名参数,通过形参名称来匹配
+def test02(a,b,c,d):
+    print('{0}-{1}-{2}-{3}'.format(a,b,c,d))
+test02(d=20,b=40,a=10,c=100)
+#可变参数
+def f2(a,b,*c):
+    print(a,b,c)
+
+f2(8,9,19,20)
+#强制命名参数,在带星号的‘可变参数’后面增加新的参数，必须在后面调用的时候“强制命名参数”
+def f3(*a,b,c):
+    print(a,b,c)
+f3(2,b=3,c=4)
+
+f =lambda a,b,c:a+b+c
+print(f)
+print(f(2,3,4))
+
+g = [lambda a:a*2,lambda b:b*3,lambda c:c*4]
+print(g[0](6),g[1](7),g[2](8))
+
+#测试lambda表达式、匿名函数
+
+f= lambda a,b,c,d:a*b*c*d
+
+def test01(a,b,c,d):
+    return a*b*c*d
+print(f(5,99,55,11))
+
+g = [lambda a:a*2,lambda b:b*3]
+print(g[0](6))
+
+h=[test01,test01]    #函数也是对象
+print(h[0](3,4,5,6))
+
+#测试eval()函数
+
+s="print('abcde')"
+eval(s)
+
+a =10
+b =20
+c = eval("a+b")
+print(c)
+
+dict1 = dict(a=100,b=200)
+
+d = eval('a+b',dict1)
+print(d)
+
+#递归函数
+
+def test01(n):
+    print('test01:',n)
+    if n==0:
+        print('over')
+    else:
+        test01(n-1)
+
+    test02()
+    print('######',n)
+
+def test02():
+    print('test02')
+
+test01(4)
+
+#使用递归函数计算阶乘
+
+
+def factorial(n):
+
+    if n==1:
+        return 1
+    else:
+        return n*factorial(n-1)
+
+
+print(factorial(5))
