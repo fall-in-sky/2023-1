@@ -1,0 +1,93 @@
+#嵌套函数（内部函数）——分形几何
+def outer():
+    print('outer running')
+
+    def inner01():
+        print("inner running")
+
+        inner01()
+
+outer()    #外部无法调用内部函数，封装，闭包
+
+def printChineseName(name,familyName):
+    print("{0}-{1}".format(familyName,name))
+
+def printEnglishName(name,familyName):
+    print("{0}-{1}".format(name,familyName))
+
+def printName(isChinese,name,familyName):
+    def inner_print(a,b):
+        print("{0}-{1}".format(a,b))
+    if isChinese:
+        inner_print(familyName,name)
+    else:
+        inner_print(name,familyName)
+
+printName(True,'cc','g')
+printName(False,'cc','g')
+
+#nonlocal关键字
+a =100
+def outer():
+    b = 10
+    def inner():
+        nonlocal b    #声明外部函数的局部变量
+        print('inner:',b)
+        b = 20
+        global a    #声明全局变量
+        a = 1000
+    inner()
+    print('outer b:',b)
+outer()
+print('a:',a)
+
+#LEGB规则local>Enclosed>Global>Built in
+print(type(str))
+#str = 'global str'
+def outer():
+    #str ='outer'
+    def inner():
+        str ="inner"
+        print(str)
+    inner()
+outer()
+
+#第六章 面向对象编程——继承、多态、封装
+#对象的进化 随着编程面临的问题越来越复杂进化出了对象
+'''结构体    struct resume{
+        int age;
+        char name[10];
+        double salary;
+    };
+'''
+#类的定义（创造—）
+class Student:    #类名一般首字母大写，多个单词采用驼峰原则
+    def __init__(self,name,score):  #self必须位于第一个参数
+        self.name = name
+        self.score = score
+
+    def say_score(self):    #self必须位于第一个参数
+        print('{0}的分数是：{1}'.format(self.name,self.score))
+s1 = Student('照亮',19)    #通过类名（）调用构造函数
+s1.say_score()
+
+#构造函数__init__()两种方法
+#实例属性——实例方法
+s1.age =32
+s1.salary =3000
+print(s1.salary)
+s2 = Student('张扬',21)
+
+s2.say_score()
+Student.say_score(s2)
+
+print(dir(s2))
+print(s2.__dict__)
+class Man:
+    pass
+stu2 = Student
+s1 = Student('ll',60)
+s2 = stu2('gg',100)
+
+s1.say_score()
+s2.say_score()
