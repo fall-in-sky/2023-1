@@ -131,3 +131,114 @@ print(emp1.get_salary())
 print(emp1.salary)
 emp1.salary = 2000
 print(emp1.salary)
+
+#面向对象三大特征——封装、继承、多态
+#继承——父类——子类
+def animals():
+    if True:
+        print("mammals")
+        if animals(0):
+            print("tiger")
+        elif animals(1):
+            print("monkey")
+        elif animals(2):
+            print("wolf")
+
+
+    else:
+        print("others")
+#不知道怎么使上面的代码运行，下次再看看吧
+class Person:    #父类
+    def __init__(self,name,age):
+        self.name = name
+        self.__age =age     #私有属性（可以继承但不能直接用）
+
+    def say_age(self):
+        print("年龄：")
+
+class Student(Person):    #子类
+    def __init__(self,name,age,score):
+        Person.__init__(self,name,age)    #必须显示的调用父类初始化方法，不然解释器不会去调用
+        self.score = score
+#Student-->Person-->object类
+print(Student.mro())
+
+s = Student('g',18,60)
+print(s.name)
+s.say_age()
+#print(s.age)
+print(s._Person__age)
+print(dir(s))
+
+#类成员的继承和重写
+class Person:    #父类
+    def __init__(self,name,age):
+        self.name = name
+        self.__age =age     #私有属性（可以继承但不能直接用）
+
+    def say_age(self):
+        print("年龄：",self.__age)
+
+    def say_introduce(self):
+        print('我的名字是{0}'.format(self.name))
+
+class Student(Person):    #子类
+    def __init__(self,name,age,score):
+        Person.__init__(self,name,age)    #必须显示的调用父类初始化方法，不然解释器不会去调用
+        self.score = score
+
+    def say_introduce(self):
+        '''重写了父类的方法'''
+        print('报告老师，我的名字是{0}'.format(self.name))
+
+s = Student("g",18,80)
+s.say_age()
+s.say_introduce()
+
+#类的继承层次结构
+class A:pass
+class B(A):pass
+
+#测试重写object的__str__()
+class Person:    #默认继承object类
+    def __init__(self,name):
+        self.name = name
+    def __str__(self):
+        return '名字是：{0}'.format(self.name)
+p = Person('gg')
+print(p)
+
+#多重继承Python支持多重继承，一个子类可以有多个“直接父类”
+class A:
+    def aa(self):
+        print('aa')
+    def say(self):
+        print('r')
+class B:
+    def bb(self):
+        print('bb')
+    def say(self):
+            print("k")
+class C(B,A):
+    def cc(self):
+        print('cc')
+c = C()
+c.cc()
+c.bb()
+c.aa()
+
+#mro()
+print(C.mro())
+c.say()
+
+#测试super()获取父类定义，而非父类对象
+class A:
+
+    def say(self):
+        print('r：',self)
+class B:
+    def say(self):
+        A.say(self)
+        #super().say()    #疑似讲课有误
+        print('k：',self)
+B().say()
