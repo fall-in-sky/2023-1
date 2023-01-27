@@ -1,0 +1,117 @@
+#多态——是指同一个方法调用由于对象不同会产生不同的行为
+class Animal:
+    def shout(self):
+        print("叫")
+class Dog(Animal):
+    def shout(self):
+        print("小狗汪汪")
+
+class Man:
+    def eat(self):
+        print('吃饭')
+
+class Chinese(Man):
+    def eat(self):
+        print("筷子")
+
+class English(Man):
+    def eat(self):
+        print("叉子")
+
+class Indian(Man):
+    def eat(self):
+        print("手")
+def manEat(m):
+    if isinstance(m,Man):
+        m.eat()
+    else:
+        print("不能吃饭")
+manEat(Chinese())
+manEat(English())
+
+#特殊方法和运算符重载
+class Person:
+    def __init__(self,name):
+        self.name = name
+    def __add__(self, other):
+        if isinstance(other,Person):
+            return "{0}-{1}".format(self.name,other.name)
+        else:
+            return "不是同类，不能相加"
+    def __mul__(self, other):
+        if isinstance(other,int):
+            return self.name*other
+        else:
+            return "不是同类，不能相加"
+p1 = Person('g')
+p2 = Person('cc')
+x = p2 + p1
+print(x)
+print(p1*3)
+
+#测试一些特殊属性
+class A:
+    def aa(self):
+        print('aa')
+    def say(self):
+        print('r')
+class B:
+    def bb(self):
+        print('bb')
+    def say(self):
+            print("k")
+class C(B,A):
+    def __init__(self,nm):
+        self.nm = nm
+    def cc(self):
+        print('cc')
+c = C(3)
+c.cc()
+c.bb()
+c.aa()
+
+#mro()
+print(C.mro())    #打印类的层次结构
+c.say()    #解释器寻找方法是‘从左到右’的方式寻找，此时会执行B类中的say（）
+
+print(dir(c))
+print(c.__dict__)
+print(c.__class__)
+print(C.__base__)
+print(C.mro())
+print(A.__subclasses__())
+
+#对象的浅拷贝和深拷贝
+import copy
+class MP:
+    def __init__(self,cpu,screen):
+        self.cpu = cpu
+        self.screen = screen
+
+class CPU:
+    def calculate(self):
+        print('123')
+        print('cpu对象:',self)
+
+class SCREEN:
+    def calculate(self):
+        print('好看')
+        print('screen对象:',self)
+
+#测试变量赋值
+c1=CPU()
+c2 = c1
+print(c1)
+print(c2)
+print("测试浅复制")
+#测试浅复制
+s1 =SCREEN()
+m1 = MP(c1,s1)
+m2 = copy.copy(m1)
+print(m1,m1.cpu,m1.screen)
+print(m2,m2.cpu,m2.screen)
+#测试深复制
+print("测试深复制")
+m3 = copy.deepcopy(m1)
+print(m1,m1.cpu,m1.screen)
+print(m3,m3.cpu,m3.screen)
