@@ -194,3 +194,124 @@ __all__=['add','sub']    #手动添加全局变量__all__之后,from x import * 
 import package1.Mymath
 result = package1.Mymath.add(11,12)
 print(result)
+
+print('a')
+
+import package1.Mymath
+result = package1.Mymath.add(11,12)
+print(result)
+
+from package1.Mymath import *
+result = add(14,15)
+print(result)
+
+result = mul(14,15)
+print(result)
+
+'''
+package
+模块
+__init__.py
+类中的，__init__初始化方法
+包中__init__.py初始化模块
+初始化
+首次使用包中的模块时，__init__.py模块会被执行一次
+__init__.py可以存放普通模块一样的代码
+一般会写一些辅助代码，让你更方便使用
+这种方式等价于在测试文件中使用import包.模块
+
+#print('1')
+import package1.Mymath
+import sys
+list1 = sys.path
+print(type(list1))
+for path in list1:
+    print(path)
+
+
+在测试文件中，from 包 import *也可以在__init__里面添加
+'''
+'''
+1、模块的发布
+  a.为什么要发布
+    系统可以用，自定义不好用
+    
+  b.sys.path
+    导入模块时，搜索路径列表
+    如果所有路径中都没有要导入的模块，会导致无法导入目标模块
+    解决方案：
+    1.将模块所在路径手动加入到sys.path
+    2.将自定义模块发布到系统目录
+      发布自定义模块的步骤：
+      1确定的发布的模块（目录结构）
+        setup.py
+        package
+          自定义模块
+      2setup的编辑工作
+        setup()
+      3构建
+        python setup.py build
+      4发布
+        python setup.py sdist
+        
+        from distutils.core import setup
+setup(name='秦',version='1.0',description='人列计算机',
+      author='冯诺依曼',py_modules=['package1.Mymath',])
+        
+      
+2、模块的安装
+  2.1 通过命令完成安装-安全
+     a.找到之前发布的压缩包，解压操作
+     b.进入文件夹，执行命令 python setup.py install
+          
+  2.2 暴力安装
+     直接将要安装的包以及模块，复制对应的系统目录中
+     
+'''
+import sys
+list1 = sys.path
+print(type(list1))
+for path in list1:
+    print(path)
+#手动添加Mymath,路径分隔符两种表示方式：1.'/' 2.'\\'
+sys.path.append('D:\pythonProject\package1')
+list1 = sys.path
+print(type(list1))
+for path in list1:
+    print(path)
+import Mymath
+print(Mymath.add(12,13))
+
+'''
+异常 异常就是不正常，python检测到错误后，解释器无法继续执行
+案例 需求：输入被除数和除数，求商并打印结果
+a,b,c
+问题：1、str->int 如果str不是纯数字
+2、0做被除数
+解决方案 使用if-else 但业务偏移
+        try:可能出现问题的代码
+        except:出现问题后执行的代码块
+'''
+#str->int
+a= input('输入被除数')
+b= input('输入除数')
+if a.isdigit() and b.isdigit():
+    a =int(a)
+    b =int(b)
+    if b !=0:
+        #求商
+        c=a/b
+        print('商为:%g'%c)
+    else:
+        print('除数不为0')
+else:
+    print('数字类型有误')
+
+try:
+    a = int(a)
+    b = int(b)
+    # 求商
+    c = a / b
+    print('商为:%g' % c)
+except:
+    print('异常')
