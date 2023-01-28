@@ -126,3 +126,71 @@ factory2 = CarFactory()
 print(factory)
 print(factory2)
 
+#什么是模块：只要以.py为后缀的文件，都可以被称为模块
+# 模块中可以包含1变量2函数3class面向对象（类——对象）4可执行代码
+#使用模块有什么好处？管理方便易维护，降低复杂度
+PI=3.14
+def get_area(r):    #求圆面积的方法，r:半斤，return:圆的面积
+    return PI*r*r
+class Student():
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def show_info(self):    #展示学生信息
+        print('name:%s age:%d'%(self.name,self.age))
+
+get_area(2)
+print('半径为2的圆面积为:')
+print(get_area(2))
+stu =Student('学生1',18)
+stu.show_info()
+'''
+如何使用模块：自定义模块，导入模块
+导入后1模块名.变量，2模块名.函数名（参数），3模块名.类
+导入模块的方式
+'''
+import random
+result =random.randint(1,6)
+print(result)
+
+from random import randint
+result =random.randint(1,6)
+print((result))
+
+'''
+自定义一个模块
+实现数学四则运算
+两个数的加减乘除运算
+'''
+def add(a,b):
+    return a+b
+def sub(a,b):
+    return a-b
+def mul(a,b):
+    return a*b
+def div(a,b):
+    return a/b
+if __name__ == '__main__':
+    result
+a = 10
+b = 2
+print('和：%g'%add(a,b))    #其余同理
+#__main__
+print(__name__)
+#开一个新的文件.py——导入自定义模块
+#import '旧文件' 在自定义模块中：新增控制代码：if __name__ == '__main__' 测试代码执行
+#from 旧文件 import add,sub(变量,类,函数,*默认导入所有功能)
+x=10
+y=20
+print('和：%g''旧文件.百分号在文件名前' %add(x,y))
+print('减：%g''旧文件.百分号在文件名前' %sub(x,y))
+
+__all__=['add','sub']    #手动添加全局变量__all__之后,from x import * 将不再是导入所有，而是一部分
+
+#Python中的包package，概念是包括__init__.py的文件夹
+#将模块归类，方便整理，防止模块名冲突
+#模块中的包名字会产生变化 包名.模块名
+
+import package1.Mymath
+result = package1.Mymath.add(11,12)
+print(result)
