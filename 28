@@ -1,0 +1,128 @@
+#组合 has-a关系使用组合，is-a关系用继承
+
+#使用继承实现代码的复用
+class A1:
+    def say_al(self):
+        print('a1')
+class B1(A1):
+    pass
+
+b1 = B1()
+b1.say_al()
+#使用组合实现代码的复用
+class A2:
+    def say_a2(self):
+        print('a2')
+class B2:
+    def __init__(self,a):
+        self.a = a
+
+a2 = A2()
+b2 = B2(a2)
+b2.a.say_a2()
+
+#测试has-a关系，使用组合
+class MP:
+    def __init__(self,cpu,screen):
+        self.cpu = cpu
+        self.screen = screen
+
+class CPU:
+    def calculate(self):
+        print('123')
+        print('cpu对象:',self)
+
+class SCREEN:
+    def show(self):
+        print('好看')
+        print('screen对象:',self)
+
+m = MP(CPU(),SCREEN())
+m.cpu.calculate()
+m.screen.show()
+
+#设计模式——工厂模式实现
+class CarFactory:
+    def create_car(self,brand):
+        if brand =='奔驰':
+            return Benz()
+        elif brand =='宝马':
+            return BMW()
+        elif brand =='比亚迪':
+            return BYD()
+        else:
+            return '未知品牌，无法创建'
+class Benz:
+    pass
+class BMW:
+    pass
+class BYD:
+    pass
+
+factory = CarFactory()
+c1 = factory.create_car('奔驰')
+print(c1)
+c2 = factory.create_car('比亚迪')
+print(c2)
+
+#设计模式——单例模式实现
+class Mysingleton:
+
+    __obj = None    #类属性
+    __init_flag = True
+    def __new__(cls, *args, **kwargs):
+        if cls.__obj ==None:
+            cls.__obj = object.__new__(cls)
+        return cls.__obj
+    def __init__(self,name):
+        if Mysingleton.__init_flag:
+            print('init……')
+            self.name = name
+            Mysingleton.__init_flag = False
+a = Mysingleton('aa')
+b = Mysingleton('BB')
+print(a)
+print(b)
+c = Mysingleton('cc')
+print(c)
+
+#设计模式——工厂模式和单例模式的整合使用
+class CarFactory:
+    __obj = None    #类属性
+    __init_flag = True
+
+    def create_car(self,brand):
+        if brand =='奔驰':
+            return Benz()
+        elif brand =='宝马':
+            return BMW()
+        elif brand =='比亚迪':
+            return BYD()
+        else:
+            return '未知品牌，无法创建'
+    def __new__(cls, *args, **kwargs):
+        if cls.__obj ==None:
+            cls.__obj = object.__new__(cls)
+        return cls.__obj
+    def __init__(self):
+        if CarFactory.__init_flag:
+            print('init CarFactory……')
+            CarFactory.__init_flag = False
+
+class Benz:
+    pass
+class BMW:
+    pass
+class BYD:
+    pass
+
+factory = CarFactory()
+c1 = factory.create_car('奔驰')
+print(c1)
+c2 = factory.create_car('比亚迪')
+print(c2)
+
+factory2 = CarFactory()
+print(factory)
+print(factory2)
+
