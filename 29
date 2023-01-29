@@ -1,0 +1,80 @@
+'''
+异常的传递
+'''
+def test1():
+    print('-'*10 +'test1开始'+'-'*10)
+    print(aa)
+    print('-'*10 +'test1结束'+'-'*10)
+def test2():
+    print('-'*10 +'test2开始'+'-'*10)
+    test1()
+    print('-'*10 +'test2结束'+'-'*10)
+def test3():
+    print('-'*10 +'test3开始'+'-'*10)
+    #test2()
+    try:
+        test2()
+    except:
+        pass
+    print('-'*10 +'test3结束'+'-'*10)
+test3()
+'''
+自定义异常以及抛出自定义异常
+    raise 异常对象
+class自定义异常(BaseException):
+    def __init__(self):
+        pass
+定义一个学生类，私有属性gender,提供对应的设置值以及访问值的方法
+'''
+#定义一个异常类
+
+class GenderException(Exception):
+    def __init__(self):
+        super().__init__()
+        self.errMsg = '性别只能设置男或女'
+
+class Student():
+    def __init__(self,name,gender):
+        self.name = name
+        # self.__gender =gender
+        self.setGender(gender)
+
+     #设置性别
+    def setGender(self, gender):
+        if gender =='male' or gender == 'female':
+            self.__gender = gender
+        else:
+            raise GenderException()
+            #抛出异常(性别）
+
+    #获取性别
+    def getGender(self):
+        return self.__gender
+    def showInfo(self):
+        print('我叫:%s 性别:%s'%(self.name,self.__gender))
+
+try:
+    stu = Student('学生1','male')
+    stu.showInfo()
+except Exception as e:
+    print(e.errMsg)
+'''
+try:
+    stu.setGender('no belonging')
+except Exception as e:
+    print(type(e))
+    # print(e.args)
+    print(e.errMsg)
+'''
+#stu.showInfo()
+
+'''
+1.游戏引擎的安装：
+安装方式有两种：
+1.pip安装     （所有通过命令操作符的操作在本电脑无法执行，
+不仅pip,python也不行，原因？？？？？？？没放C盘放在D盘？）
+  pip install pygame == 版本号
+2.pycharm
+  File --> setting --> Project --> Project Interpreter
+   -->右侧 + install --> 搜索框输入pygame -->下方installPackage
+'''
