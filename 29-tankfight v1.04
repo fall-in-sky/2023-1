@@ -1,0 +1,222 @@
+'''
+1.游戏引擎的安装：
+安装方式有两种：
+1.pip安装     已经解决（添加pip到路径中去）
+  pip install pygame == 版本号
+2.pycharm
+  File --> setting --> Project --> Project Interpreter
+   -->右侧 + install --> 搜索框输入pygame -->下方installPackage
+   验证pygame是否好用
+     import pygame
+明白需求（基于面向对象的分析）
+  1、有哪些类
+  2、不同的类所具备的一些功能：
+
+'''
+import pygame
+'''
+坦克大战
+类：哪些类：    不同的类所具备的一些功能
+    1、主逻辑类
+      开始游戏
+      结束游戏
+    2、坦克类（1、我方坦克   2、敌方坦克）
+      移动
+      射击
+      展示坦克
+    3、子弹类
+      移动
+      展示子弹
+    4、爆炸效果类
+      展示爆炸效果
+    5、墙壁类
+      属性：是否可以通过
+    6、音效类
+      播放音乐
+
+项目框架的搭建
+  涉及到的类，用代码简单的实现
+'''
+
+class MainGame():
+    def __init__(self):
+        pass
+    #开始游戏方法
+    def startGame(self):
+        pass
+    #结束游戏方法
+    def endGame(self):
+        pass
+class Tank():
+    def __init__(self):
+        pass
+    #坦克的移动方法
+    def move(self):
+        pass
+    #射击方法
+    def shot(self):
+        pass
+    #展示展示
+    def displayTank(self):
+        pass
+class MyTank(Tank):
+    def __init__(self):
+        pass
+class EnemyTank(Tank):
+    def __init__(self):
+        pass
+class Bullet():
+    def __init__(self):
+        pass
+class Explode():
+    def __init__(self):
+        pass
+    #展示爆炸效果
+    def displayExplode(self):
+        pass
+class Wall():
+    def __init__(self):
+        pass
+    #展示墙壁的方法
+    def displayWall(self):
+        pass
+class Music():
+    def __init__(self):
+        pass
+    #开始播放音乐
+    def play(self):
+        pass
+
+'''
+v1.01
+  新增功能：
+  创建游戏窗口
+  用到游戏引擎中的功能模块
+  官方开发文档
+  1.02
+  事件处理：
+    点击关闭按钮能退出程序
+    方向控制，子弹发射
+  1.03
+    实现左上角问题提示内容
+      font
+  1.04
+    加载我方坦克
+'''
+_display = pygame.display
+COLOR_RED = pygame.Color(255,0,0)
+version = 'v1.03'
+class MainGame():
+    #游戏主窗口
+    window = None
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 500
+    COLOR_BLACK = pygame.Color(0,0,0)
+    #创建我方坦克
+    TANK_P1 = None
+    #游戏主窗口
+    def __init__(self):
+        pass
+    #开始游戏方法
+    def startGame(self):
+        pygame.display.init()
+        #创建窗口加载窗口（借鉴官方文档）
+        MainGame.window = pygame.display.set_mode([MainGame.SCREEN_WIDTH,MainGame.SCREEN_HEIGHT])
+        #创建我方坦克
+        MainGame.TANK_P1 = Tank()
+        #设置一下游戏标题
+        _display.set_caption('坦克大战'+version)
+        #self.getTextSurface('aaa')
+        #让窗口持续刷新操作
+        while True:
+            #给窗口完成一个填充颜色
+            MainGame.window.fill(MainGame.COLOR_BLACK)
+            #在循环中持续完成事件的获取
+            self.getEvent()
+            #将绘制文字粘贴窗口
+            MainGame.window.blit(self.getTextSurface('剩余敌方坦克%d辆' %5),(5,5))
+            #将我方坦克加入到窗口中
+            MainGame.TANK_P1.displayTank()
+            #窗口的刷新
+            pygame.display.update
+    #获取程序运行期间所有事件(鼠标＋键盘)
+    def getEvent(self):
+        #1、获取所有事件
+        eventLIST = pygame.event.get()
+        #2、对事件进行判断处理（1、点击关闭按钮，2按下键盘某个按键）
+        for event in eventLIST:
+            #判断event.type 是否QUIT，如果是退出的话，直接调用程序结束方法
+            if event.type == pygame.QUIT:
+                self.endGame()
+            #判断事件类型是否为按键按下，如果是，继续判断按键是哪一个按键，来进行对应的处理
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    print("坦克向左调头，移动")
+                elif event.key == pygame.K_RIGHT:
+                    print("坦克向右调头，移动")
+                elif event.key == pygame.K_UP:
+                    print("坦克向上调头，移动")
+                elif event.key == pygame.K_DOWN:
+                    print("坦克向下调头，移动")
+                elif event.key == pygame.K_SPACE:
+                    print("发射子弹")
+    #左上角文字绘制功能
+    def getTextSurface(self,text):
+        #初始化字体模块
+        pygame.font.init()
+        #查看系统支持的所有字体
+        '''没有实现文字绘制！！！！！！！
+        fontList = pygame.font.get_fonts()
+        print(fontList)
+        '''
+
+        #选择合适字体
+        font = pygame.font.SysFont('kaiti',18)
+        #使用对应的字符完成相关内容的绘制
+        textSurface = font.render(text,True,COLOR_RED)
+        return textSurface
+
+    class Tank():
+        def __init__(self,left,top):
+            self.images = {     #从磁盘中加载图片,之后使用
+                'U':pygame.image.load('img/imgu.png'),
+                'D':pygame.image.load('img/imgd.png'),
+                'L':pygame.image.load('img/imgl.png'),
+                'R':pygame.image.load('img/imgr.png')
+
+            }
+            self.direction = 'U'
+            self.images = self.images[self.direction]
+            #坦克所在的区域
+            self.rect = self.images.get_rect()
+            #指定坦克初始化位置x,y轴位置
+            self.rect.left = left
+            self.rect.top = top
+
+        # 坦克的移动方法
+        def move(self):
+            pass
+
+        # 射击方法
+        def shot(self):
+            pass
+
+        # 展示坦克
+        def displayTank(self):
+            self.image = self.images[self.direction]
+            #1、重新设置坦克的图片
+            #2、将坦克加入到窗口中
+            MainGame.window.blit(self.image,self.rect)
+
+
+    class MyTank(Tank):
+        def __init__(self):
+            pass
+
+    #结束游戏方法
+    def endGame(self):
+        print('谢谢使用')
+        #结束python解释器
+        exit()
+
+MainGame().startGame()
